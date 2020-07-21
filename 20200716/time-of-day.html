@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time of Day</title>
+</head>
+<body>
+    <h1>Time of Day</h1>
+    <p>This page uses JavaScript to determine the current hour, and presents a different image, custom message, and color based on the time of day.</p>
+    <div id="output"></div>
+    <div><img src="" id="timePic" /></div>
+    <footer>Copyright &copy; 2018-<span id="copyright">2019</span></footer>
+    <script>
+
+       let myDate = new Date();
+       
+       let myHour = myDate.getHours();
+
+       let myYear = myDate.getFullYear();
+       console.log('The year is ' + myYear);
+
+       let myOutput = "";
+
+       let myPic = "";
+
+       let myColor = "";
+        
+        if(myHour >=5  && myHour < 12){//Morning (5am to 12 noon)
+            myOutput += 'Good Morning!';
+            myPic = "images/images/morning.jpg";
+            myColor = "yellow";
+        }else if(myHour >= 12  && myHour < 18) {//Afternoon (12 noon to 6pm)
+            myOutput += 'Good Afternoon!';
+            myPic = "images/images/afternoon.jpg";
+            myColor = "orange";
+        }else if(myHour >= 18  && myHour < 23) {//Evening (6pm to 11pm)
+            myOutput += 'Good evening!';
+            myPic = "images/images/evening.jpg";
+            myColor = "blue";
+        }else{//Night (11pm to 5am)
+            myOutput += 'Good Night!';
+            myPic = "images/images/night.jpg";
+            myColor = "purple";
+
+            var all = document.getElementsByTagName("*");
+
+            for (var i=0, max=all.length; i < max; i++) {
+            all[i].style.color = "white";
+            }
+
+        }
+       
+        document.getElementById('output').innerHTML = myOutput;
+        document.getElementById('timePic').src = myPic
+        document.body.style.backgroundColor = myColor;
+
+        //places dynamic copyright
+        document.getElementById('copyright').innerHTML = myYear;
+
+    </script>
+</body>
+</html>
